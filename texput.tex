@@ -1,0 +1,370 @@
+\title{Comparativa objetiva de c\'odecs de audio}
+
+\maketitle
+\tableofcontents
+
+\section{Finalidad}
+%{{{
+
+\begin{enumerate}
+\item Aprender a usar el codec Vorbis.
+\item Aprender a calcular curvas R/D (Rate/Distortion) para lossy
+  audio codecs.
+\end{enumerate}
+
+%}}}
+
+\section{Procedimiento}
+
+\subsection{Sampling}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+sudo apt-get install alsa-utils
+arecord -f cd > sample.wav # Push keys CTRL+C to finish sampling 
+\end{lstlisting}
+
+%}}}
+
+\subsection{Encoding}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+sudo apt-get install vorbis-tools
+oggenc sample.wav -o sample.ogg
+\end{lstlisting}
+
+%}}}
+
+\subsection{Decoding}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+oggdec sample.ogg -o sample.wav
+\end{lstlisting}
+
+%}}}
+
+\subsection{Playing}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+ogg123 sample.ogg
+aplay sample.wav
+\end{lstlisting}
+
+%}}}
+
+\subsection{Controlling the quality in Vorbis}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+oggenc -q -1 sample.wav -o sample_m1.ogg # Lowest quality
+oggenc -q 0 sample.wav -o sample_0.ogg
+oggenc -q 1 sample.wav -o sample_1.ogg
+:
+oggenc -q 10 sample.wav -o sample_10.ogg # Highest quality
+\end{lstlisting}
+
+%}}}
+
+\subsection{Encoding with LAME (MP3)}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\begin{lstlisting}
+sudo apt-get install lame
+lame -b 32 sample.wav sample_9.mp3 # Lowest quality
+:
+lame -b 320 sample.wav sample_0.mp3 # Highest quality
+\end{lstlisting}
+
+%}}}
+
+\subsection{The R/D (Rate/Distortion) curve}
+%{{{
+
+\begin{itemize}
+\item Is used for measuring the encoding performance of lossy encoders.
+\end{itemize}
+\begin{verbatim}
+Distortion
+^
+|  * x
+|  * x
+|  *  x    * is better than x
+|   *  x
+|    *   x
+|      *    x
+|         *      x
+|                *     x
++-----------------------> Bit-rate
+\end{verbatim}
+
+%}}}
+
+\subsection{Measuring distortion}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\lstinputlisting{measuring-distortion.sh}
+
+%}}}
+
+\subsection{Measuring bit-rate}
+%{{{
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\lstinputlisting{measuring-br.sh}
+
+%}}}
+
+\subsection{A Vorbis's R/D curve}
+%{{{
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\lstinputlisting{vorbis-RD.sh}
+
+%}}}
+
+\subsection{A MP3's R/D curve}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\lstinputlisting{MP3-RD.sh}
+
+%}}}
+
+\subsection{Vorbis vs MP3}
+%{{{
+
+\lstset{language=bash,
+  %basicstyle=\scriptsize\ttfamily,
+  %numbers=left,
+  frame=shadowbox,
+  % numberstyle=\tiny, 
+  keywordstyle=\color{blue}\textbf,
+  % tabsize=4,
+  % numbersep=15pt,
+  % stepnumber=1,
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  % upquote=true,
+  % aboveskip={2\baselineskip},
+  % columns=fixed,
+  % showstringspaces=false,
+  % extendedchars=true,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}}
+}
+\lstinputlisting{vorbis-vs-MP3.sh}
+
+%}}}
+
+\subsection{Comparaci\'on con otros codecs de audio}
+Modifica los scripts anteriores de forma que sea posible comparar
+Vorbis y MP3 con otros codificadores de audio que conozcas.
+
+%}}}
+
+\section{Entregables}
+Una descripci\'on de los experimentos realizados, sus resultados y
+unas conclusiones.
+
+\begin{comment}
+\partc*{The Question - La Pregunta}
+%{{{
+
+\begin{itemize}
+\item ¿Existe alguna correlación entre la longitud (en tiempo) de la
+  secuencia de audio usada en los tests y la diferencia entre los
+  rendimientos de Vorbis y MP3? En otras palabras, ¿depende la
+  diferencia en la calidad proporcionada por Vorbis y MP3 del tamaño
+  de la secuencia de audio?
+\end{itemize}
+
+%}}}
+\end{comment}
