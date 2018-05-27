@@ -1,0 +1,1146 @@
+<!DOCTYPE html> 
+<html> 
+<head> <title>Comparativa objetiva de codecs de audio</title> 
+<meta charset="UTF-8" /> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)" /> 
+<link rel="stylesheet" type="text/css" href="index.css" /> 
+<script type="text/javascript" 
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" 
+></script> 
+<style type="text/css"> 
+.MathJax_MathML {text-indent: 0;} 
+</style> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">Comparativa objetiva de códecs de audio</h2>
+ <div class="author" ><span 
+class="ecrm-1200">Vicente Gonz</span><span 
+class="ecrm-1200">á</span><span 
+class="ecrm-1200">lez Ruiz</span></div><br />
+<div class="date" ><span 
+class="ecrm-1200">May 27, 2018</span></div>
+   </div>
+   <h3 class="likesectionHead"><a 
+ id="x1-1000"></a>Contents</h3>
+   <div class="tableofcontents">
+   <span class="sectionToc" >1 <a 
+href="#x1-20001" id="QQ2-1-2">Finalidad</a></span>
+<br />   <span class="sectionToc" >2 <a 
+href="#x1-30002" id="QQ2-1-3">Procedimiento</a></span>
+<br />    <span class="subsectionToc" >2.1 <a 
+href="#x1-40002.1" id="QQ2-1-4">Sampling</a></span>
+<br />    <span class="subsectionToc" >2.2 <a 
+href="#x1-50002.2" id="QQ2-1-5">Encoding</a></span>
+<br />    <span class="subsectionToc" >2.3 <a 
+href="#x1-60002.3" id="QQ2-1-6">Decoding</a></span>
+<br />    <span class="subsectionToc" >2.4 <a 
+href="#x1-70002.4" id="QQ2-1-7">Playing</a></span>
+<br />    <span class="subsectionToc" >2.5 <a 
+href="#x1-80002.5" id="QQ2-1-8">Controlling the quality in Vorbis</a></span>
+<br />    <span class="subsectionToc" >2.6 <a 
+href="#x1-90002.6" id="QQ2-1-9">Encoding with LAME (MP3)</a></span>
+<br />    <span class="subsectionToc" >2.7 <a 
+href="#x1-100002.7" id="QQ2-1-10">The R/D (Rate/Distortion) curve</a></span>
+<br />    <span class="subsectionToc" >2.8 <a 
+href="#x1-110002.8" id="QQ2-1-11">Measuring distortion</a></span>
+<br />    <span class="subsectionToc" >2.9 <a 
+href="#x1-120002.9" id="QQ2-1-13">Measuring bit-rate</a></span>
+<br />    <span class="subsectionToc" >2.10 <a 
+href="#x1-130002.10" id="QQ2-1-15">A Vorbis’s R/D curve</a></span>
+<br />    <span class="subsectionToc" >2.11 <a 
+href="#x1-140002.11" id="QQ2-1-17">A MP3’s R/D curve</a></span>
+<br />    <span class="subsectionToc" >2.12 <a 
+href="#x1-150002.12" id="QQ2-1-19">Vorbis vs MP3</a></span>
+<br />    <span class="subsectionToc" >2.13 <a 
+href="#x1-160002.13" id="QQ2-1-21">Comparación con otros codecs de audio</a></span>
+<br />   <span class="sectionToc" >3 <a 
+href="#x1-170003" id="QQ2-1-22">Entregables</a></span>
+   </div>
+<!--l. 6--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-20001"></a>Finalidad</h3>
+<!--l. 9--><p class="noindent" >
+                                                                  
+
+                                                                  
+     </p><ol  class="enumerate1" >
+     <li 
+  class="enumerate" id="x1-2002x1">Aprender a usar el codec Vorbis.
+     </li>
+     <li 
+  class="enumerate" id="x1-2004x2">Aprender  a  calcular  curvas  R/D  (Rate/Distortion)  para  lossy  audio
+     codecs.</li></ol>
+<!--l. 17--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
+ id="x1-30002"></a>Procedimiento</h3>
+<!--l. 19--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-40002.1"></a>Sampling</h4>
+   <!--l. 41-->
+<div class="lstlisting" id="listing-1"><span class="label"><a 
+ id="x1-4001r1"></a></span>sudo apt<!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>get install alsa<!--l. 42--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>utils <br /><span class="label"><a 
+ id="x1-4002r2"></a></span>arecord <!--l. 43--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>f <span 
+class="ecbx-1000">cd</span> &#x003E; sample.wav # Push keys CTRL+C to finish sampling
+   </div>
+<!--l. 48--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-50002.2"></a>Encoding</h4>
+   <!--l. 70-->
+<div class="lstlisting" id="listing-2"><span class="label"><a 
+ id="x1-5001r1"></a></span>sudo apt<!--l. 71--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>get install vorbis<!--l. 71--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>tools <br /><span class="label"><a 
+ id="x1-5002r2"></a></span>oggenc sample.wav <!--l. 72--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample.ogg
+   </div>
+<!--l. 77--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-60002.3"></a>Decoding</h4>
+   <!--l. 99-->
+<div class="lstlisting" id="listing-3"><span class="label"><a 
+ id="x1-6001r1"></a></span>oggdec sample.ogg <!--l. 100--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample.wav
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 105--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-70002.4"></a>Playing</h4>
+   <!--l. 127-->
+<div class="lstlisting" id="listing-4"><span class="label"><a 
+ id="x1-7001r1"></a></span>ogg123 sample.ogg <br /><span class="label"><a 
+ id="x1-7002r2"></a></span>aplay sample.wav
+   </div>
+<!--l. 134--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.5   </span> <a 
+ id="x1-80002.5"></a>Controlling the quality in Vorbis</h4>
+   <!--l. 156-->
+<div class="lstlisting" id="listing-5"><span class="label"><a 
+ id="x1-8001r1"></a></span>oggenc <!--l. 157--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>q <!--l. 157--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>1 sample.wav <!--l. 157--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample_m1.ogg # Lowest quality <br /><span class="label"><a 
+ id="x1-8002r2"></a></span>oggenc <!--l. 158--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>q 0 sample.wav <!--l. 158--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample_0.ogg <br /><span class="label"><a 
+ id="x1-8003r3"></a></span>oggenc <!--l. 159--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>q 1 sample.wav <!--l. 159--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample_1.ogg <br /><span class="label"><a 
+ id="x1-8004r4"></a></span>: <br /><span class="label"><a 
+ id="x1-8005r5"></a></span>oggenc <!--l. 161--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>q 10 sample.wav <!--l. 161--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>o sample_10.ogg # Highest quality
+   </div>
+<!--l. 166--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.6   </span> <a 
+ id="x1-90002.6"></a>Encoding with LAME (MP3)</h4>
+   <!--l. 188-->
+<div class="lstlisting" id="listing-6"><span class="label"><a 
+ id="x1-9001r1"></a></span>sudo apt<!--l. 189--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>get install lame <br /><span class="label"><a 
+ id="x1-9002r2"></a></span>lame <!--l. 190--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>b 32 sample.wav sample_9.mp3 # Lowest quality <br /><span class="label"><a 
+ id="x1-9003r3"></a></span>: <br /><span class="label"><a 
+ id="x1-9004r4"></a></span>lame <!--l. 192--><math 
+ xmlns="http://www.w3.org/1998/Math/MathML"  
+display="inline" ><mo 
+class="MathClass-bin">−</mo></math>b 320 sample.wav sample_0.mp3 # Highest quality
+   </div>
+<!--l. 197--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.7   </span> <a 
+ id="x1-100002.7"></a>The R/D (Rate/Distortion) curve</h4>
+     <ul class="itemize1">
+     <li class="itemize">Is used for measuring the encoding performance of lossy encoders.</li></ul>
+                                                                  
+
+                                                                  
+<div class="verbatim" id="verbatim-1">
+Distortion
+ <br />^
+ <br />|  * x
+ <br />|  * x
+ <br />|  *  x    * is better than x
+ <br />|   *  x
+ <br />|    *   x
+ <br />|      *    x
+ <br />|         *      x
+ <br />|                *     x
+ <br />+-----------------------&#x003E; Bit-rate
+</div>
+<!--l. 215--><p class="nopar" >
+</p><!--l. 219--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.8   </span> <a 
+ id="x1-110002.8"></a>Measuring distortion</h4>
+   <!--l. 241--><div class="lstinputlisting">
+<a 
+ id="x1-11001"></a>
+<span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11002r1"></a></span><span 
+class="ectt-1000">sudo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">apt</span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">get</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">install</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">libfftw3</span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11003r2"></a></span><span 
+class="ectt-1000">wget</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">http</span><span 
+class="ectt-1000">://</span><span 
+class="ectt-1000">www</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ual</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">es</span><span 
+class="ectt-1000">/~</span><span 
+class="ectt-1000">vruiz</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">progs</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">tar</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">gz</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11004r3"></a></span><span 
+class="ectt-1000">tar</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">xzvf</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">tar</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">gz</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11005r4"></a></span><span 
+class="ectt-1000">cd</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11006r5"></a></span><span 
+class="ectt-1000">source</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">./</span><span 
+class="ectt-1000">compile</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-11007r6"></a></span><span 
+class="ectt-1000">~/</span><span 
+class="ectt-1000">bin</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">block_size</span><span 
+class="ectt-1000">=4096</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_A</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">sample_1</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_B</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">sample_1</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">FFT</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">grep</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">#</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">We</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">suppose</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">identical</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">headers</span>
+   </div>
+<!--l. 245--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.9   </span> <a 
+ id="x1-120002.9"></a>Measuring bit-rate</h4>
+   <!--l. 266--><div class="lstinputlisting">
+<a 
+ id="x1-12001"></a>
+<span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-12002r1"></a></span><span 
+class="ectt-1000">bytes</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">wc</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">c</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003C;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">sample</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000">‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-12003r2"></a></span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$bytes</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-12004r3"></a></span><span 
+class="ectt-1000">time</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">write_here_the_duration_in_seconds_of_the_audio</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-12005r4"></a></span><span 
+class="ectt-1000">kbps</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$bytes</span><span 
+class="ectt-1000">*8/</span><span 
+class="ectt-1000">$time</span><span 
+class="ectt-1000">/1000</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">bc</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">l</span><span 
+class="ectt-1000">‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-12006r5"></a></span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$kbps</span>
+   </div>
+<!--l. 270--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.10   </span> <a 
+ id="x1-130002.10"></a>A Vorbis’s R/D curve</h4>
+   <!--l. 291--><div class="lstinputlisting">
+                                                                  
+
+                                                                  
+<a 
+ id="x1-13001"></a>
+<span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13002r1"></a></span><span 
+class="ectt-1000">#</span><span 
+class="ectt-1000">!/</span><span 
+class="ectt-1000">bin</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">bash</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13003r2"></a></span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13004r3"></a></span><span 
+class="ectt-1000">sound_file</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$1</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13005r4"></a></span><span 
+class="ectt-1000">ffmpeg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">i</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">s16le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">y</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13006r5"></a></span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13007r6"></a></span><span 
+class="ectt-1000">quality</span><span 
+class="ectt-1000">=-1</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13008r7"></a></span><span 
+class="ectt-1000">while</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">[</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$quality</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">10</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">];</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">do</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13009r8"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$quality</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13010r9"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">rm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13011r10"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">oggenc</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">q</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$quality</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">o</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13012r11"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">oggdec</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">o</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13013r12"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">ffmpeg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">i</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">s16le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">y</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13014r13"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">block_size</span><span 
+class="ectt-1000">=4096</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">FFT</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_A</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">\</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13015r14"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_B</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">grep</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">cut</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">d</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13016r15"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">bitrate</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">wc</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">c</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003C;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000">‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13017r16"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$bitrate</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$RMSE</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003E;&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">dat</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13018r17"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">let</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">quality</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">quality</span><span 
+class="ectt-1000">+1</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-13019r18"></a></span><span 
+class="ectt-1000">done</span>
+   </div>
+<!--l. 295--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.11   </span> <a 
+ id="x1-140002.11"></a>A MP3’s R/D curve</h4>
+   <!--l. 317--><div class="lstinputlisting">
+<a 
+ id="x1-14001"></a>
+<span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14002r1"></a></span><span 
+class="ectt-1000">#</span><span 
+class="ectt-1000">!/</span><span 
+class="ectt-1000">bin</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">bash</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14003r2"></a></span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14004r3"></a></span><span 
+class="ectt-1000">sound_file</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$1</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14005r4"></a></span><span 
+class="ectt-1000">ffmpeg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">i</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">s16le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">y</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14006r5"></a></span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14007r6"></a></span><span 
+class="ectt-1000">br</span><span 
+class="ectt-1000">=32</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14008r7"></a></span><span 
+class="ectt-1000">while</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">[</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$br</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">320</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">];</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">do</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14009r8"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$br</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14010r9"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">rm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">mp3</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14011r10"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">lame</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">b</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$br</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">o</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">mp3</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14012r11"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">lame</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">decode</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">mp3</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14013r12"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">ffmpeg</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">i</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">wav</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">s16le</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">y</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14014r13"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">snr</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">block_size</span><span 
+class="ectt-1000">=4096</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">FFT</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_A</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">\</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14015r14"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">--</span><span 
+class="ectt-1000">file_B</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">pcm</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">dev</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">null</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">grep</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">|</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">cut</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">d</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">f</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">2‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14016r15"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">bitrate</span><span 
+class="ectt-1000">=‘</span><span 
+class="ectt-1000">wc</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">c</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003C;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$sound_file</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">mp3</span><span 
+class="ectt-1000">‘</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14017r16"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">echo</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$bitrate</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$RMSE</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003E;&#x003E;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">$0</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">dat</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14018r17"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">let</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">br</span><span 
+class="ectt-1000">=</span><span 
+class="ectt-1000">br</span><span 
+class="ectt-1000">+32</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-14019r18"></a></span><span 
+class="ectt-1000">done</span>
+   </div>
+<!--l. 321--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.12   </span> <a 
+ id="x1-150002.12"></a>Vorbis vs MP3</h4>
+   <!--l. 343--><div class="lstinputlisting">
+<a 
+ id="x1-15001"></a>
+<span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15002r1"></a></span><span 
+class="ectt-1000">#</span><span 
+class="ectt-1000">!/</span><span 
+class="ectt-1000">bin</span><span 
+class="ectt-1000">/</span><span 
+class="ectt-1000">bash</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15003r2"></a></span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15004r3"></a></span><span 
+class="ectt-1000">gnuplot</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">p</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x003C;&#x003C;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">EOF</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15005r4"></a></span><span 
+class="ectt-1000">set</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">title</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">Ogg</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">Vorbis</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">vs</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">MP3</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">LAME</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15006r5"></a></span><span 
+class="ectt-1000">set</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">xlabel</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">File</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">size</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">in</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">bytes</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15007r6"></a></span><span 
+class="ectt-1000">set</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">ylabel</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">RMSE</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">(</span><span 
+class="ectt-1000">Root</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">Mean</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">Square</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">Error</span><span 
+class="ectt-1000">)</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15008r7"></a></span><span 
+class="ectt-1000">plot</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">./</span><span 
+class="ectt-1000">ogg</span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">RD</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">sh</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">dat</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">with</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">lines</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">title</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">Ogg</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">Vorbis</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">,</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">\</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15009r8"></a></span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">./</span><span 
+class="ectt-1000">mp3</span><span 
+class="ectt-1000">-</span><span 
+class="ectt-1000">RD</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">sh</span><span 
+class="ectt-1000">.</span><span 
+class="ectt-1000">dat</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">with</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">lines</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">title</span><span 
+class="ectt-1000"> </span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000">MP3</span><span 
+class="ectt-1000">␣</span><span 
+class="ectt-1000">LAME</span><span 
+class="ectt-1000">&#x0022;</span><span 
+class="ectt-1000"> </span><br /><span class="label"><a 
+ id="x1-15010r9"></a></span><span 
+class="ectt-1000">EOF</span>
+   </div>
+<!--l. 347--><p class="noindent" >
+</p>
+   <h4 class="subsectionHead"><span class="titlemark">2.13   </span> <a 
+ id="x1-160002.13"></a>Comparación con otros codecs de audio</h4>
+<!--l. 348--><p class="noindent" >Modiﬁca los scripts anteriores de forma que sea posible comparar Vorbis y MP3 con
+otros codiﬁcadores de audio que conozcas.
+</p><!--l. 353--><p class="noindent" >
+</p>
+   <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
+ id="x1-170003"></a>Entregables</h3>
+<!--l. 354--><p class="noindent" >Una descripción de los experimentos realizados, sus resultados y unas conclusiones.
+</p>
+    
+</body> 
+</html>
+                                                                  
+
+
